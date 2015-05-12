@@ -12,7 +12,7 @@ class VolumeHandler
   set: (step) ->
     step = @validate_step step
     vol = @step_to_volume step
-    @exec('amixer sset PCM,0 ' + vol + '%', (error, stdout, stderr) -> )
+    @exec('osascript -e "set Volume ' + step + '"', (error, stdout, stderr) -> )
     @current_step = step
 
   up: () ->
