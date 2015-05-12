@@ -14,7 +14,7 @@ class SpotifyHandler
     @paused = false
 
     @state = {
-      shuffle: false
+      shuffle: true
       track:
         object: null
         index: 0

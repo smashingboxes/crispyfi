@@ -1,12 +1,11 @@
 {
   "spotify": {
-    "username": "Spotify Username",
-    "password": "Spotify Password"
+    "username": "username",
+    "password": "password"
   },
   "auth": {
     "tokens": [
-      "slack-token-one",
-      "slack-token-two"
+      "JT1GFje0UylET5MSN2B6EkmK"
     ]
   }
 }
