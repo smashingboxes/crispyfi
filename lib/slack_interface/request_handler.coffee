@@ -82,6 +82,8 @@ class SlackInterfaceRequestHandler
                   @spotify.skip() if status == 'banned'
                 else
                   reply_data['text'] = "#{@spotify.state.track.name} has *already* been banned"
+              when 'remove'
+                @spotify.removeCurrentSong()
 
               when 'banned'
                 reply_data['text'] = ":rotating_light: BANNED TRACKS :rotating_light: \n#{@spotify.bannedSongs().join("\n")}"
