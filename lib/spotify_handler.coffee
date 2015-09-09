@@ -158,6 +158,12 @@ class SpotifyHandler
     @spotify.player.stop()
     return
 
+  removeCurrentSong: (requesting_user) ->
+    track_uri = @state.track.object.link
+    playlist = @state.playlist.object
+    track_index = playlist.getTracks().indexOf(track_uri)
+    playlist.removeTracks([track_index])
+    return
 
   # Plays the next track in the playlist
   skip: ->
