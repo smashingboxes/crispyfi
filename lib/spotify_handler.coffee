@@ -58,12 +58,13 @@ class SpotifyHandler
     @spotify.login @config.username, @config.password, false, false
 
   pushQueue: (track_uri) ->
-    if /track/.test(track_uri)
+    if /^spotify:track:/.test(@_sanitize_link(track_uri))
       track = @spotify.createFromLink @_sanitize_link(track_uri)
-      if track.isLoaded
+      if track && track.isLoaded
         @queue.push(track)
-      @spotify.waitForLoaded [track], (t) =>
-        @queue.push(t)
+      else
+        @spotify.waitForLoaded [track], (t) =>
+          @queue.push(t)
 
   showQueue: () ->
     @queue.show()
@@ -200,7 +201,7 @@ class SpotifyHandler
     @paused = false
     # If a track is given, immediately switch to it
     if track_or_link?
-      if typeof(track_or_link) == 'string' && /track/.test(track_or_link)
+      if typeof(track_or_link) == 'string' && /^spotify:track:/.test(@_sanitize_link(track_or_link))
         # We got a link from Slack
         # Links from Slack are encased like this: <spotify:track:1kl0Vn0FO4bbdrTbHw4IaQ>
         # So we remove everything that is neither char, number or a colon.
